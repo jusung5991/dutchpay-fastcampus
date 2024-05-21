@@ -8,17 +8,17 @@ import {RecoilRoot} from "recoil";
 import "bootstrap/dist/css/bootstrap.min.css"
 
 function App() {
-  return (
-    <BrowserRouter>
-        <RecoilRoot>
-          <Routes>
-            <Route path="/" element={<CreateGroup/>} />
-            <Route path="/members" element={<AddMembers />} />
-            <Route path="/expense" element={<ExpenseMain />} />
-          </Routes>
-        </RecoilRoot>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <RecoilRoot>
+                <Routes>
+                    <Route path="/" element={<CreateGroup/>} />
+                    <Route path="/members" element={<AddMembers />} />
+                    <Route path="/expense" element={<ExpenseMain />} />
+                </Routes>
+            </RecoilRoot>
+        </BrowserRouter>
+    );
 }
 
 export default App;
