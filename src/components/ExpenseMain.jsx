@@ -1,18 +1,74 @@
+import {AddExpenseForm} from "./AddExpenseForm";
+import {ExpenseTable} from "./ExpenseTable";
+import {Col, Container, Row} from "react-bootstrap";
+import {SettlementSummary} from "./SettlementSummary";
+import {ServiceLogo} from "./shared/ServiceLogo";
+import {useRecoilValue} from "recoil";
+import {groupMembersState} from "../state/groupMembers";
+import {groupNameState} from "../state/groupName";
+import styled from "styled-components";
+
 export const ExpenseMain = () => {
     return (
-        <div>
-            ExpenseMain Component
-            <div>
-            {/*    leftPain*/}
-            {/*    비용 추가 폼*/}
-            {/*    정산 결과  컴퍼넌트 폼*/}
-
-            </div>
-            <div>
-            {/*    RightPain*/}
-            {/*  그룹명 헤더 랜더링*/}
-            {/* 비용 리스트 컴포넌트 랜더링 */}
-            </div>
-        </div>
+        <Container fluid>
+            <Row>
+                <Col xs={12} s={5} md={4}>
+                    <LeftPane />
+                </Col>
+                <Col>
+                    <RightPane />
+                </Col>
+            </Row>
+        </Container>
     )
+
 }
+
+const LeftPane = () => (
+    <Container>
+        <StyledGapRow>
+            <Row>
+                <ServiceLogo />
+            </Row>
+            <Row>
+                <AddExpenseForm />
+            </Row>
+            <Row>
+                <SettlementSummary />
+            </Row>
+        </StyledGapRow>
+    </Container>
+)
+
+const RightPane = () => {
+    const groupName = useRecoilValue(groupNameState)
+        return (
+            <StyledRightPaneWrapper>
+                <Row>
+                    <StyledGroupName>{groupName || '그룹 이름'}</StyledGroupName>
+                </Row>
+                <Row>
+                    <ExpenseTable />
+                </Row>
+
+            </StyledRightPaneWrapper>
+        )
+}
+
+const StyledGroupName = styled.h2`
+    margin-bottom: 80px;
+    font-weight: 700;
+    font-size : 48px;
+    line-height: 48px;
+    text-align: center;
+`
+
+const StyledRightPaneWrapper = styled(Container)`
+    padding: 100px 31px 100px 31px;
+`
+
+const StyledGapRow = styled(Row)`
+    gap: 5vh;
+    padding-top: 100px;
+    justify-content: center;
+`

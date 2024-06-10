@@ -31,7 +31,6 @@ describe('그룹의 멤버', () => {
 
     test('그룹 멤버 입력하지않고 저장 버튼 클릭시 에러메시지 노출,', async () => {
         const {saveButton} = renderComponent()
-
         await userEvent.click(saveButton)
 
         const errorMessage = await screen.findByText('그룹 멤버들의 이름을 입력해주세요.')
